@@ -15,17 +15,12 @@ let isError = false;
 // création fonction cleanInputString
 // str est en paramètre
 function cleanInputString(str){
-    // la méthode split() divise une chaîne en un tableau de sous-chaînes et renvoie le nouveau tableau.
-    const strArray = str.split('');
-    //on assigne un tableau à cleanStrArray
-    const cleanStrArray = [];
-    //une boucle for est utilisée pour parcourir chaque caractère du tableau strArray
-    //i est initialisé à 0, i doit être inférieur à la longueur de strArray, i prend la valeur de 1 supplémentaire à chaque tour de boucle
-    for (let i=0;i < strArray.length;i++){
-        //la méthode .includes() retourne vrai si le tableau contient le caractère et faux si ce n'est pas le cas
-        //l'opérateur logique ! va retourner la valeur opposée de la valeur de la méthode .includes()
-        //si le caractère qui est étudié en tant que strArray[i] n'est pas inclus dans le tableau ["+","-"," "], alors il sera poussé dans le tableau cleanStrArray grâce à la méthode push
-        if(!["+","-"," "].includes(strArray[i])) {cleanStrArray.push(strArray[i])}
-    }
+    // on utilise un objet regex pour étudier les correspondances d'une chaîne de caractères avec un motif de caractères donné
+    // /!\ le + est échappé pour qu'il puisse bien correspondre à la valeur du + dans les caractères recherchés.
+    // le + seul permet de rechercher le caractère précédent une seule fois ou davantage.
+    // les classes de caractères abrégés permettent de faire correspondre des caractères spécifiques sans avoir à écrire ces caractères dans le modèle.
+    //les classes de caractères abrégés sont précédés d'un anti-slash \.
+    //la classe de caractères \s correspond à n'importe quel caractère d'espacement
+    const regex = /\+-\s/;
 }
-// step 22
+// step 25
