@@ -19,8 +19,8 @@ function cleanInputString(str){
     // /!\ le + est échappé pour qu'il puisse bien correspondre à la valeur du + dans les caractères recherchés.
     // le + seul permet de rechercher le caractère précédent une seule fois ou davantage.
     // les classes de caractères abrégés permettent de faire correspondre des caractères spécifiques sans avoir à écrire ces caractères dans le modèle.
-    //les classes de caractères abrégés sont précédés d'un anti-slash \.
-    //la classe de caractères \s correspond à n'importe quel caractère d'espacement
+    // les classes de caractères abrégés sont précédés d'un anti-slash \.
+    // la classe de caractères \s correspond à n'importe quel caractère d'espacement
     const regex = /\+-\s/;
 }
 // step 25
