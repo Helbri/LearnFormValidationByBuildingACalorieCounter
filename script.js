@@ -7,10 +7,10 @@ const budgetNumberInput = document.getElementById('budget');
 // création constante entryDropdown sélectionnant l'élément d'id entry-dropdown
 const entryDropdown = document.getElementById('entry-dropdown');
 
-// création constante addEntryButton sélectionnant l'élément d'id entry-dropdown
+// création constante addEntryButton sélectionnant l'élément d'id add-entry
 const addEntryButton = document.getElementById('add-entry');
 
-// création constante clearButton sélectionnant le bouton d'id entry-dropdown
+// création constante clearButton sélectionnant le bouton d'id clear
 const clearButton = document.getElementById('clear');
 
 // création constante output sélectionnant la div d'id output
@@ -45,14 +45,14 @@ function isInvalidInput(str){
     return str.match(regex);
 }
 
-// Test de la fonction isInvalidInput ave la chaîne "1e3" pour vérifier si le regex fonctionne correctement
-// la méthode match retourne un tableau avec les correspondances trouvées dans la chaîne.
-// dans la console, ce résultat est retourné : [ '1e3', index: 0, input: '1e3', groups: undefined ]
-// "1e3" est la valeur correspondante au regex /\d+e\d+/i
-// index: 0 est l'index de la valeur correspondante dans la chaîne.
-// input: '1e3' est la chaîne originale qui correspondait
-// groups: undefined sont les groupes correspondants, lesquels ne sont pas utilisés dans ce cas.
-// si à la place de "1e3", "10" est rentré comme paramètre de "isInvalidInput" dans le console.log(), le résultat de la console est : null car aucune correspondance n'a été trouvée. C'est comme dans une barre de recherche.
-// null en JavaScript est un primitif spécial qui représente l'intentionnelle absence de valeur. En contexte booléen, null est considéré comme faux ce qui donne la valeur false dans une instruction conditionnelle
-console.log(isInvalidInput("1e3"));
-// step 36
+//création fonction addEntry
+function addEntry() {
+    // la constante targetId est créée. 
+    // le # est concaténé avec la valeur sélectionnée de l'élément déroulant associé à l'ID entry-dropdown, récupéré à l'aide de la constante entryDropdown, puis le résultat est stocké dans la constante targetId
+    const targetId = "#" + entryDropdown.value;
+    // on assigne à targetInputContainer la sélection issue du document html correspondant à targetId (ex:#breakfast pour la valeur de entryDropdown.value) à laquelle a été concaténé " .input-container" qui correspond à la class du container attaché à chaque valeur comprise dans le container d'id entry-dropdown.
+    // cela génère un sélecteur css descendant qui ciblera le .input-container contenu dans la valeur prise en compte dans le targetId créé précédemment
+    // le sélecteur CSS descendant permet d'identifier un élément enfant direct ou indirect d'un autre élément en plaçant l'élément parent avant l'élément enfant en les séparant par un espace.
+    targetInputContainer = document.querySelector(targetId + ' .input-container');
+}
+// step 40
