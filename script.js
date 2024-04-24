@@ -53,6 +53,7 @@ function addEntry() {
     // on assigne à targetInputContainer la sélection issue du document html correspondant à targetId (ex:#breakfast pour la valeur de entryDropdown.value) à laquelle a été concaténé " .input-container" qui correspond à la class du container attaché à chaque valeur comprise dans le container d'id entry-dropdown.
     // cela génère un sélecteur css descendant qui ciblera le .input-container contenu dans la valeur prise en compte dans le targetId créé précédemment
     // le sélecteur CSS descendant permet d'identifier un élément enfant direct ou indirect d'un autre élément en plaçant l'élément parent avant l'élément enfant en les séparant par un espace.
-    targetInputContainer = document.querySelector(targetId + ' .input-container');
+    // un modèle littéral est utilisé pour concaténer la variable targetId et .input-container. Des backticks délimitent le modèle littéral. La variable est introduite entre les accolades de #{}. Il n'y a plus besoin d'apostrophe et de +.
+    const targetInputContainer = document.querySelector(`${targetId} .input-container`);
 }
-// step 40
+// step 41
