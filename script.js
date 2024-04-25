@@ -50,7 +50,7 @@ function addEntry() {
     // la valeur de entryDropdown est cherchée. C'est une variable. Elle est concaténée avec un # qui la précède et .input-container séparé d'un espace qui la suit.
     // la concaténation est produite avec un modèle littéral.
     // la variable est entre les accolades de ${}. Le modèle littéral est contenu entre des backticks. Le résultat de la concaténation produit un sélecteur CSS descendant.
-    // le modèle litéral est passé comme argume de document.querySelector() qui ira chercher les éléments dans le document.
+    // le modèle littéral est passé comme argument de document.querySelector() qui ira chercher les éléments dans le document.
     // tout cela est assigné à la constante targetInputContainer
     const targetInputContainer = document.querySelector(`#${entryDropdown.value} .input-container`);
 }
