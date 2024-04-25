@@ -47,13 +47,11 @@ function isInvalidInput(str){
 
 //création fonction addEntry
 function addEntry() {
-    // la constante targetId est créée. 
-    // le # est concaténé avec la valeur sélectionnée de l'élément déroulant associé à l'ID entry-dropdown, récupéré à l'aide de la constante entryDropdown, puis le résultat est stocké dans la constante targetId
-    const targetId = "#" + entryDropdown.value;
-    // on assigne à targetInputContainer la sélection issue du document html correspondant à targetId (ex:#breakfast pour la valeur de entryDropdown.value) à laquelle a été concaténé " .input-container" qui correspond à la class du container attaché à chaque valeur comprise dans le container d'id entry-dropdown.
-    // cela génère un sélecteur css descendant qui ciblera le .input-container contenu dans la valeur prise en compte dans le targetId créé précédemment
-    // le sélecteur CSS descendant permet d'identifier un élément enfant direct ou indirect d'un autre élément en plaçant l'élément parent avant l'élément enfant en les séparant par un espace.
-    // un modèle littéral est utilisé pour concaténer la variable targetId et .input-container. Des backticks délimitent le modèle littéral. La variable est introduite entre les accolades de #{}. Il n'y a plus besoin d'apostrophe et de +.
-    const targetInputContainer = document.querySelector(`${targetId} .input-container`);
+    // la valeur de entryDropdown est cherchée. C'est une variable. Elle est concaténée avec un # qui la précède et .input-container séparé d'un espace qui la suit.
+    // la concaténation est produite avec un modèle littéral.
+    // la variable est entre les accolades de ${}. Le modèle littéral est contenu entre des backticks. Le résultat de la concaténation produit un sélecteur CSS descendant.
+    // le modèle litéral est passé comme argume de document.querySelector() qui ira chercher les éléments dans le document.
+    // tout cela est assigné à la constante targetInputContainer
+    const targetInputContainer = document.querySelector(`#${entryDropdown.value} .input-container`);
 }
-// step 41
+// step 42
