@@ -53,5 +53,22 @@ function addEntry() {
     // le modèle littéral est passé comme argument de document.querySelector() qui ira chercher les éléments dans le document.
     // tout cela est assigné à la constante targetInputContainer
     const targetInputContainer = document.querySelector(`#${entryDropdown.value} .input-container`);
+    // création variable entryNumber. Utilisation de querySelectorAll. "querySelectorAll" va créer une liste de tous les éléments qui vont correspondre au sélecteur. Avec "length", on aura la valeur "length" des éléments trouvés
+    // la valeur de length est augmentée de 1 pour que le compte visible commence à partir de 1 au lieu de 0
+    const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length+1;
+    // la variable HTMLString va servir pour la création d'une chaîne dynamique pour l'ajouter à la page web
+    // un modèle littéral est assigné HTMLString
+    // label pour la partie Name sur le modèle <label for="X-#-name">Entry ${entryNumber} Name</label> X= valeur d'entryDropdown (entryDropdown.value) #= valeur de la variable entryNumber
+    // un input pour la partie Name est inséré. Il est de type text et contient un placeholder. Son id correspond à celui du label juste au-dessus.
+    // label pour la partie Calories sur le modèle <label for="X-#-calories">Entry ${entryNumber} Calories</label> X= valeur d'entryDropdown (entryDropdown.value) #= valeur de la variable entryNumber
+    // un input pour la partie Calories est inséré. Il est de type number et contient un placeholder. Son id correspond à celui du label juste au-dessus. L'attribut min est défini sur 0
+    const HTMLString = `<label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
+    <input type="text" placeholder="Name" id="${entryDropdown.value}-${entryNumber}-name"/>
+    <label for="${entryDropdown.value}-${entryNumber}-calories">Entry ${entryNumber} Calories</label>
+    <input type="number" id="${entryDropdown.value}-${entryNumber}-calories" placeholder="Calories" min="0"/>`;
+    // la variable HTMLString contient du contenu HTML qui est ajouté au container targetInputContainer à l'aide de la propriété innerHTML. Cette propriété récupère le contenu de HTMLString et le rend visible à l'intérieur de targetInputContainer, permettant ainsi l'ajout dynamique de nouveaux éléments HTML à cet endroit dans le document
+    targetInputContainer.innerHTML += HTMLString;
 }
-// step 42
+// un addEventListener a été mis sur la constante addEntryButton. Au moment du click, cela déclenche la fonction addEntry.
+addEntryButton.addEventListener('click', addEntry);
+// step 52
