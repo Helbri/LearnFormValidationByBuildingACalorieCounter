@@ -66,9 +66,13 @@ function addEntry() {
     <input type="text" placeholder="Name" id="${entryDropdown.value}-${entryNumber}-name"/>
     <label for="${entryDropdown.value}-${entryNumber}-calories">Entry ${entryNumber} Calories</label>
     <input type="number" id="${entryDropdown.value}-${entryNumber}-calories" placeholder="Calories" min="0"/>`;
-    // la variable HTMLString contient du contenu HTML qui est ajouté au container targetInputContainer à l'aide de la propriété innerHTML. Cette propriété récupère le contenu de HTMLString et le rend visible à l'intérieur de targetInputContainer, permettant ainsi l'ajout dynamique de nouveaux éléments HTML à cet endroit dans le document
-    targetInputContainer.innerHTML += HTMLString;
+    // la méthode insertAdjacentHTML(), contient deux arguments, et sert à insérer une chaîne de texte HTML ou XML à un endroit défini de l'arborescence DOM.
+    // la position "beforeend" permet d'introduire la chaîne à l'intérieur de l'élément targetInputContainer, après son dernier enfant
+    targetInputContainer.insertAdjacentHTML();
 }
+// création de la fonction getCaloriesFromInputs.
+// elle prend comme paramètre "list"
+function getCaloriesFromInputs(list){};
 // un addEventListener a été mis sur la constante addEntryButton. Au moment du click, cela déclenche la fonction addEntry.
 addEntryButton.addEventListener('click', addEntry);
-// step 52
+// step 54
