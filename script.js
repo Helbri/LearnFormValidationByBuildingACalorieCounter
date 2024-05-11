@@ -72,7 +72,15 @@ function addEntry() {
 }
 // création de la fonction getCaloriesFromInputs.
 // elle prend comme paramètre "list"
-function getCaloriesFromInputs(list){};
+function getCaloriesFromInputs(list){
+    // déclaration de la variable calories
+    let calories = 0;
+    // La boucle "for...of" est utilisée pour parcourir les éléments d'un objet itérable comme un tableau
+    for (const item of list){
+        // la valeur de l'item est assignée à la constante currVal
+        const currVal=item.value;
+    }
+};
 // un addEventListener a été mis sur la constante addEntryButton. Au moment du click, cela déclenche la fonction addEntry.
 addEntryButton.addEventListener('click', addEntry);
-// step 54
+// step 59
