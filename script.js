@@ -68,11 +68,38 @@ function addEntry() {
     <input type="number" id="${entryDropdown.value}-${entryNumber}-calories" placeholder="Calories" min="0"/>`;
     // la méthode insertAdjacentHTML(), contient deux arguments, et sert à insérer une chaîne de texte HTML ou XML à un endroit défini de l'arborescence DOM.
     // la position "beforeend" permet d'introduire la chaîne à l'intérieur de l'élément targetInputContainer, après son dernier enfant
-    targetInputContainer.insertAdjacentHTML();
+    targetInputContainer.insertAdjacentHTML('beforeend', HTMLString);
 }
+
 // création de la fonction getCaloriesFromInputs.
 // elle prend comme paramètre "list"
-function getCaloriesFromInputs(list){};
+function getCaloriesFromInputs(list){
+    // déclaration de la variable calories
+    let calories = 0;
+    // La boucle "for...of" est utilisée pour parcourir les éléments d'un objet itérable comme un tableau
+    for (const item of list){
+        // la valeur de l'item est assignée à la constante currVal
+        // const currVal=item.value;
+        const currVal = cleanInputString(item.value);
+        // déclaration de la variable invalidInputMatch
+        // assignation à invalidInputMatch de la fonction isInvalidInput avec la constante currVal en paramètre
+        const invalidInputMatch = isInvalidInput(currVal);
+        // déclaration if qui permet de savoir si invalidInputMatch et vrai
+        if (invalidInputMatch){
+            //utilisation de la fonction alert(). Récupération de la première entrée du tableau invalidInputMatch
+            alert(`Invalid Input: ${invalidInputMatch[0]}`);
+            // true est assigné à isError
+            isError = true;
+            // la valeur null est retournée
+            return null;
+        }
+        // la valeur de currVal est transformée en nombre grâce au constructeur Number
+        // celle-ci est assignée à calories via l'opérateur d'addition et affectation +=
+        calories+=Number(currVal);
+    }
+    //les calories sont affichées
+    return calories;
+};
 // un addEventListener a été mis sur la constante addEntryButton. Au moment du click, cela déclenche la fonction addEntry.
 addEntryButton.addEventListener('click', addEntry);
-// step 54
+// step 66
