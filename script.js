@@ -88,17 +88,25 @@ function calculateCalories(e) {
     // recherche effectuée sur les éléments <input> de type "number" contenus dans l'élément avec l'id "exercise" grâce à document.querySelectorAll. Le résultat est assigné à la variable exerciseNumberInputs
     const exerciseNumberInputs = document.querySelectorAll('#exercise input[type=number]');
 
-    // constante breakfastCalories. "getCaloriesFromInputs(breakfastNumberInputs)" lui est assigné
+    // constante breakfastCalories. La fonction getCaloriesFromInputs avec breakfastNumberInputs lui est assigné
     const breakfastCalories = getCaloriesFromInputs(breakfastNumberInputs);
-    // constante lunchCalories. "getCaloriesFromInputs(lunchNumberInputs)" lui est assigné
+    // constante lunchCalories. La fonction getCaloriesFromInputs avec lunchNumberInputs lui est assigné
     const lunchCalories = getCaloriesFromInputs(lunchNumberInputs);
-    // constante dinnerCalories. "getCaloriesFromInputs(dinnerNumberInputs)" lui est assigné
+    // constante dinnerCalories. La fonction getCaloriesFromInputs avec dinnerNumberInputs lui est assigné
     const dinnerCalories = getCaloriesFromInputs(dinnerNumberInputs);
-    // constante snacksCalories. "getCaloriesFromInputs(snacksNumberInputs)" lui est assigné
+    // constante snacksCalories. La fonction getCaloriesFromInputs avec snacksNumberInputs lui est assigné
     const snacksCalories = getCaloriesFromInputs(snacksNumberInputs);
-    // constante exerciseCalories. "getCaloriesFromInputs(exerciseNumberInputs)" lui est assigné
+    // constante exerciseCalories. La fonction getCaloriesFromInputs avec exerciseNumberInputs lui est assigné
     const exerciseCalories = getCaloriesFromInputs(exerciseNumberInputs);
-
+    // constante budgetCalories. La fonction getCaloriesFromInputs avec budgetNumberInputs lui est assigné
+    const budgetCalories = getCaloriesFromInputs([budgetNumberInput]);
+    if (isError) {
+        return;
+    }
+    // constante prenant la sommes des calories de breakfast, lunch, dinner, snacks
+    const consumedCalories = breakfastCalories + lunchCalories + dinnerCalories + snacksCalories;
+    // constante prenant le budget de Calories - les calories consommées + celles des exercices
+    const remainingCalories = budgetCalories - consumedCalories + exerciseCalories;
 };
 // création de la fonction getCaloriesFromInputs.
 // elle prend comme paramètre "list"
@@ -130,4 +138,4 @@ function getCaloriesFromInputs(list){
 };
 // un addEventListener a été mis sur la constante addEntryButton. Au moment du click, cela déclenche la fonction addEntry.
 addEntryButton.addEventListener('click', addEntry);
-// step 74
+// step 78
