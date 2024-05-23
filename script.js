@@ -70,7 +70,44 @@ function addEntry() {
     // la position "beforeend" permet d'introduire la chaîne à l'intérieur de l'élément targetInputContainer, après son dernier enfant
     targetInputContainer.insertAdjacentHTML('beforeend', HTMLString);
 }
+// création de la fonction calculateCalories
+// le premier argument "e" représente l'événement du navigateur
+function calculateCalories(e) {
+    // /!\ la méthode preventDefault est utilisée. Elle prend en paramètre le "e" l'écouteur du navigateur
+    e.preventDefault();
+    // la variable globale de signalement d'erreur isError est réinitialisée sur "false"
+    isError=false;
+    // recherche effectuée sur les éléments <input> de type "number" contenus dans l'élément avec l'id "breakfast" grâce à document.querySelectorAll. Le résultat est assigné à la variable breakfastNumberInputs
+    const breakfastNumberInputs = document.querySelectorAll('#breakfast input[type=number]');
+    // recherche effectuée sur les éléments <input> de type "number" contenus dans l'élément avec l'id "lunch" grâce à document.querySelectorAll. Le résultat est assigné à la variable lunchNumberInputs
+    const lunchNumberInputs = document.querySelectorAll('#lunch input[type=number]')
+    // recherche effectuée sur les éléments <input> de type "number" contenus dans l'élément avec l'id "dinner" grâce à document.querySelectorAll. Le résultat est assigné à la variable dinnerNumberInputs
+    const dinnerNumberInputs = document.querySelectorAll('#dinner input[type=number]');
+    // recherche effectuée sur les éléments <input> de type "number" contenus dans l'élément avec l'id "snacks" grâce à document.querySelectorAll. Le résultat est assigné à la variable snacksNumberInputs
+    const snacksNumberInputs = document.querySelectorAll('#snacks input[type=number]');
+    // recherche effectuée sur les éléments <input> de type "number" contenus dans l'élément avec l'id "exercise" grâce à document.querySelectorAll. Le résultat est assigné à la variable exerciseNumberInputs
+    const exerciseNumberInputs = document.querySelectorAll('#exercise input[type=number]');
 
+    // constante breakfastCalories. La fonction getCaloriesFromInputs avec breakfastNumberInputs lui est assigné
+    const breakfastCalories = getCaloriesFromInputs(breakfastNumberInputs);
+    // constante lunchCalories. La fonction getCaloriesFromInputs avec lunchNumberInputs lui est assigné
+    const lunchCalories = getCaloriesFromInputs(lunchNumberInputs);
+    // constante dinnerCalories. La fonction getCaloriesFromInputs avec dinnerNumberInputs lui est assigné
+    const dinnerCalories = getCaloriesFromInputs(dinnerNumberInputs);
+    // constante snacksCalories. La fonction getCaloriesFromInputs avec snacksNumberInputs lui est assigné
+    const snacksCalories = getCaloriesFromInputs(snacksNumberInputs);
+    // constante exerciseCalories. La fonction getCaloriesFromInputs avec exerciseNumberInputs lui est assigné
+    const exerciseCalories = getCaloriesFromInputs(exerciseNumberInputs);
+    // constante budgetCalories. La fonction getCaloriesFromInputs avec budgetNumberInputs lui est assigné
+    const budgetCalories = getCaloriesFromInputs([budgetNumberInput]);
+    if (isError) {
+        return;
+    }
+    // constante prenant la sommes des calories de breakfast, lunch, dinner, snacks
+    const consumedCalories = breakfastCalories + lunchCalories + dinnerCalories + snacksCalories;
+    // constante prenant le budget de Calories - les calories consommées + celles des exercices
+    const remainingCalories = budgetCalories - consumedCalories + exerciseCalories;
+};
 // création de la fonction getCaloriesFromInputs.
 // elle prend comme paramètre "list"
 function getCaloriesFromInputs(list){
@@ -79,12 +116,11 @@ function getCaloriesFromInputs(list){
     // La boucle "for...of" est utilisée pour parcourir les éléments d'un objet itérable comme un tableau
     for (const item of list){
         // la valeur de l'item est assignée à la constante currVal
-        // const currVal=item.value;
         const currVal = cleanInputString(item.value);
         // déclaration de la variable invalidInputMatch
         // assignation à invalidInputMatch de la fonction isInvalidInput avec la constante currVal en paramètre
         const invalidInputMatch = isInvalidInput(currVal);
-        // déclaration if qui permet de savoir si invalidInputMatch et vrai
+        // déclaration if qui permet de savoir si invalidInputMatch est vrai
         if (invalidInputMatch){
             //utilisation de la fonction alert(). Récupération de la première entrée du tableau invalidInputMatch
             alert(`Invalid Input: ${invalidInputMatch[0]}`);
@@ -102,4 +138,4 @@ function getCaloriesFromInputs(list){
 };
 // un addEventListener a été mis sur la constante addEntryButton. Au moment du click, cela déclenche la fonction addEntry.
 addEntryButton.addEventListener('click', addEntry);
-// step 66
+// step 78
