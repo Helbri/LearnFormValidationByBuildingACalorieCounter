@@ -70,6 +70,7 @@ function addEntry() {
     // la position "beforeend" permet d'introduire la chaîne à l'intérieur de l'élément targetInputContainer, après son dernier enfant
     targetInputContainer.insertAdjacentHTML('beforeend', HTMLString);
 }
+
 // création de la fonction calculateCalories
 // le premier argument "e" représente l'événement du navigateur
 function calculateCalories(e) {
@@ -100,13 +101,33 @@ function calculateCalories(e) {
     const exerciseCalories = getCaloriesFromInputs(exerciseNumberInputs);
     // constante budgetCalories. La fonction getCaloriesFromInputs avec budgetNumberInputs lui est assigné
     const budgetCalories = getCaloriesFromInputs([budgetNumberInput]);
+
     if (isError) {
         return;
     }
+
     // constante prenant la sommes des calories de breakfast, lunch, dinner, snacks
     const consumedCalories = breakfastCalories + lunchCalories + dinnerCalories + snacksCalories;
     // constante prenant le budget de Calories - les calories consommées + celles des exercices
     const remainingCalories = budgetCalories - consumedCalories + exerciseCalories;
+    // constante estimant avec un opérateur ternaire si c'est en surplus ou déficit
+    const surplusOrDeficit = remainingCalories < 0 ? "Surplus" : "Deficit";
+    // on assigne à l'élément output, via innerHTML, une chaîne HTML qui sera affichée à l'intérieur de cet élément
+    // on lui met comme class la valeur de surplusOrDeficit en minuscules
+    // le texte du span est composée des variables remainingCalories et surplusOrDeficit
+    // pour éviter un nombre négatif de calories, la variable remainingCalories est englobée dans la méthode Math.abs
+    output.innerHTML = `<span class="${surplusOrDeficit.toLowerCase()}">${Math.abs(remainingCalories)} Calorie ${surplusOrDeficit}</span>
+    `// hr permettra de tracer une ligne horizontale
+    // chacun des paragraphes va afficher une valeur, soit celle de la variable du budget de calories, ou de la variable des calories consommées ou celle des calories brûlées
+    `
+    <hr>
+    <p>${budgetCalories} Calories Budgeted</p>
+    <p>${consumedCalories} Calories Consumed</p>
+    <p>${exerciseCalories} Calories Burned</p>
+    `;
+
+    // les class de l'élément d'id output sont récupérées avec la propriété classList. La méthode remove() permet de supprimer la class "hide"
+    output.classList.remove('hide');
 };
 // création de la fonction getCaloriesFromInputs.
 // elle prend comme paramètre "list"
@@ -120,6 +141,7 @@ function getCaloriesFromInputs(list){
         // déclaration de la variable invalidInputMatch
         // assignation à invalidInputMatch de la fonction isInvalidInput avec la constante currVal en paramètre
         const invalidInputMatch = isInvalidInput(currVal);
+        
         // déclaration if qui permet de savoir si invalidInputMatch est vrai
         if (invalidInputMatch){
             //utilisation de la fonction alert(). Récupération de la première entrée du tableau invalidInputMatch
@@ -136,6 +158,15 @@ function getCaloriesFromInputs(list){
     //les calories sont affichées
     return calories;
 };
+// création de la fonction clearForm.
+function clearForm(){
+    // la constante inputContainer prend tout les éléments de class input-container
+    // Array.from transforme un quelque chose ressemblant a un tableau en un tableau
+    const inputContainers=Array.from(document.querySelectorAll(".input-container"));
+};
+
 // un addEventListener a été mis sur la constante addEntryButton. Au moment du click, cela déclenche la fonction addEntry.
 addEntryButton.addEventListener('click', addEntry);
-// step 78
+// un addEventListener a été mis sur la constante calorieCounter. Au moment de la soumission, cela déclenche la fonction calculateCalories.
+calorieCounter.addEventListener("submit", calculateCalories);
+// step 91
