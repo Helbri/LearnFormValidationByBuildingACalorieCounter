@@ -134,10 +134,13 @@ function calculateCalories(e) {
 function getCaloriesFromInputs(list){
     // déclaration de la variable calories
     let calories = 0;
+    
     // La boucle "for...of" est utilisée pour parcourir les éléments d'un objet itérable comme un tableau
     for (const item of list){
-        // la valeur de l'item est assignée à la constante currVal
+        // la valeur de la variable item est assignée à la constante currVal
         const currVal = cleanInputString(item.value);
+        
+
         // déclaration de la variable invalidInputMatch
         // assignation à invalidInputMatch de la fonction isInvalidInput avec la constante currVal en paramètre
         const invalidInputMatch = isInvalidInput(currVal);
@@ -161,12 +164,29 @@ function getCaloriesFromInputs(list){
 // création de la fonction clearForm.
 function clearForm(){
     // la constante inputContainer prend tout les éléments de class input-container
-    // Array.from transforme un quelque chose ressemblant a un tableau en un tableau
+    // Array.from transforme un quelque chose ressemblant à un tableau en un tableau
     const inputContainers=Array.from(document.querySelectorAll(".input-container"));
+
+    // // la boucle for...of permet de parcourir chaque élément du tableau inputContainers via la variable container.
+    // innerHTML est utilisé pour définir le contenu HTML de la variable container, en le remplaçant par une chaîne vide qui y sera affectée
+    for (const container of inputContainers){
+        container.innerHTML = "";
+    }
+    
+    // la valeur de budgetNumber est assignée à une chaîne vide
+    budgetNumberInput.value = "";
+
+    // innerText permet d'assigner une valeur chaîne particulière à l'élément output. 
+    output.innerText = '';
+    
+    // les class de l'élément d'id output sont récupérées avec la propriété classList. La méthode add() permet d'ajouter la class "hide"
+    output.classList.add('hide');
 };
 
 // un addEventListener a été mis sur la constante addEntryButton. Au moment du click, cela déclenche la fonction addEntry.
 addEntryButton.addEventListener('click', addEntry);
 // un addEventListener a été mis sur la constante calorieCounter. Au moment de la soumission, cela déclenche la fonction calculateCalories.
 calorieCounter.addEventListener("submit", calculateCalories);
-// step 91
+// un addEventListener a été mis sur la constante clearButton. Au moment du click, cela déclenche la fonction clearForm.
+clearButton.addEventListener("submit", clearForm);
+// step 96
